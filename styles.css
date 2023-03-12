@@ -359,6 +359,7 @@ header {
   text-decoration: none;
   margin: 0 24px;
   padding: 0 8px;
+  font-size: 24px;
 }
 
 
@@ -399,5 +400,9 @@ header {
 
   .highlight {
     width: 100%;
+  }
+
+  .footer__link {
+    margin: 0;
   }
 }
