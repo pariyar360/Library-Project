@@ -1,8 +1,18 @@
 
-function renderBooks() {
+function renderBooks(filter) {
   // selecting the class to insert books using the data
   const booksWrapper = document.querySelector(".books")
   const books = getBooks()
+
+  // sorting the array using sort
+  if (filter === "LOW_TO_HIGH") {
+    books.sort((a,b) => a.originalPrice - b.originalPrice)
+  } else if (filter === "HIGH_TO_LOW") {
+    books.sort((a,b) => b.originalPrice - a.originalPrice)
+  } else if (filter === "RATING") {
+    books.sort((a,b) => b.rating - a.rating)
+  }
+
   // mapping to a new array. it creates a array of html elements
   const booksHtml = books.map((book) => {
     return `<div class="book">
@@ -20,12 +30,16 @@ function renderBooks() {
         <i class="fas fa-star-half-alt"></i>
       </div>
       <div class="book__price">
-        <span>$${book.originalPrice.toFixed(2)}</span> $${book.salePrice}
+        <span class="book__price--normal">$${book.originalPrice.toFixed(2)}</span> $${book.salePrice}
       </div>
     </div>`
   })
   // need to use join because it displays a comma because it is displaying array
   booksWrapper.innerHTML = booksHtml.join("")
+}
+
+function filterBooks(event) {
+  renderBooks(event.target.value)
 }
 
 setTimeout(() => {
